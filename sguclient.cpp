@@ -4,6 +4,7 @@
 #include "filedownloader.h"
 #include "onlinestatus.h"
 #include "competition.h"
+#include "suggestion.h"
 #include <QtGui>
 
 SGUClient::SGUClient(QWidget *parent) :
