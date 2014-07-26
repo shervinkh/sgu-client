@@ -12,6 +12,7 @@ class FileDownloader;
 class FriendActivity;
 class OnlineStatus;
 class Competition;
+class Suggestion;
 
 class SGUClient : public QMainWindow
 {
@@ -19,6 +20,7 @@ class SGUClient : public QMainWindow
 private:
     QPushButton *friendAct;
     QPushButton *competit;
+	QPushButton *sugg;
     QPushButton *stat;
     QPushButton *accs;
     QVBoxLayout *butts;
@@ -33,6 +35,7 @@ private:
     FriendActivity *fa;
     OnlineStatus *so;
     Competition *com;
+	Suggestion *sug;
 
 public:
     explicit SGUClient(QWidget *parent = nullptr);
@@ -43,6 +46,7 @@ private slots:
     void faPage();
     void statPage();
     void comPage();
+	void sugPage();
     void loadCache();
 };
 

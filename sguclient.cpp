@@ -11,12 +11,14 @@ SGUClient::SGUClient(QWidget *parent) :
 {
     friendAct = new QPushButton(tr("Friends activity"));
     competit = new QPushButton(tr("Competitions"));
+	sugg = new QPushButton(tr("Suggestions"));
     stat = new QPushButton(tr("Status"));
     accs = new QPushButton(tr("Accounts"));
 
     butts = new QVBoxLayout;
     butts->addWidget(friendAct);
     butts->addWidget(competit);
+	butts->addWidget(sugg);
     butts->addWidget(stat);
     butts->addWidget(accs);
 
@@ -34,11 +36,13 @@ SGUClient::SGUClient(QWidget *parent) :
     fa = new FriendActivity(this, am);
     so = new OnlineStatus(this, am, fd);
     com = new Competition(this, am);
+	sug = new Suggestion(this, am);
 
     sw->addWidget(fa);
     sw->addWidget(so);
     sw->addWidget(am);
     sw->addWidget(com);
+	sw->addWidget(sug);
 
     sw->setCurrentWidget(fa);
 
@@ -93,4 +97,8 @@ void SGUClient::statPage()
 void SGUClient::comPage()
 {
     sw->setCurrentWidget(com);
+}
+
+void SGUClient::sugPage(){
+	sw->setCurrentWidget(sug);
 }

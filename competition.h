@@ -8,6 +8,7 @@ class AccountManager;
 class QLabel;
 class QLineEdit;
 class QPushButton;
+class QCheckBox;
 class QProgressBar;
 class QHBoxLayout;
 class QVBoxLayout;
@@ -32,6 +33,7 @@ private:
     QTimer *timer;
     QLabel *refrate;
     QLineEdit *refresh;
+	QCheckBox *notiCheck;
     QPushButton *setbut;
     QPushButton *refnow;
     QLabel *persec;
@@ -46,6 +48,7 @@ private:
 
 public:
     explicit Competition(QWidget *parent = nullptr, AccountManager *am = nullptr);
+	bool hasNoti();
 
 public slots:
     void updateStatus();

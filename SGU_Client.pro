@@ -28,7 +28,9 @@ SOURCES += \
     competition.cpp \
     profileinfo.cpp \
     competitiondetail.cpp \
-    profilestatus.cpp
+    profilestatus.cpp \
+    suggestion.cpp \
+    suggestionview.cpp
 
 HEADERS  += \
     filedownloader.h \
@@ -43,4 +45,6 @@ HEADERS  += \
     competition.h \
     profileinfo.h \
     competitiondetail.h \
-    profilestatus.h
+    profilestatus.h \
+    suggestion.h \
+    suggestionview.h

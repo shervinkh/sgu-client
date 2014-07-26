@@ -1,4 +1,5 @@
 #include "competitionview.h"
+#include "competition.h"
 #include "accountmanager.h"
 #include "profileinfo.h"
 #include "competitiondetail.h"
@@ -8,11 +9,14 @@
 #include <QString>
 #include <QSize>
 #include <QProcess>
+#include <QtGui>
 
-CompetitionView::CompetitionView(QWidget *parent, AccountManager *am) :
+CompetitionView::CompetitionView(QWidget *parent, AccountManager *am,
+								 Competition *com) :
     QTableWidget(parent)
 {
     this->am = am;
+	this->com = com;
     setColumnCount(3);
     setHorizontalHeaderItem(0, new QTableWidgetItem(tr("Target")));
     setHorizontalHeaderItem(1, new QTableWidgetItem(tr("Compared to")));
@@ -28,7 +32,7 @@ void CompetitionView::setData(const QList<CompetitionInfo> &in)
 
     foreach (CompetitionInfo ci, in)
     {
-        if (!ids.contains(ci))
+		if (!ids.contains(ci) && com->hasNoti() == Qt::Checked )
         {
             QString name = am->infoOf(ci.target()).name();
 
@@ -89,7 +93,7 @@ void CompetitionView::setData(const QList<CompetitionInfo> &in)
         setItem(i, 2, compt);
     }
 
-    if (hascrit)
+	if (hascrit && com->hasNoti() == Qt::Checked )
         QProcess::execute("notify-send", QStringList() << "--icon=error" << "--app-name='SGU Client'" << "SGU Client" << "You have some critical warnings!");
 
     resizeColumnsToContents();

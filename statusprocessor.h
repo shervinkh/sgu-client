@@ -6,6 +6,7 @@
 #include <QDateTime>
 #include <QtCore/qtconcurrentexception.h>
 
+
 enum ResultType {AC, WA, RE, GE, PE, TL, ML, CE, WAIT, RUN};
 
 class StatusInfo

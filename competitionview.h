@@ -31,12 +31,15 @@ public:
 };
 
 class AccountManager;
+class Competition;
 
 class CompetitionView : public QTableWidget
 {
     Q_OBJECT
 private:
     AccountManager *am;
+	Competition *com;
+
     QList<CompetitionInfo> ids;
 
     QString reason(CompetitionType T) const;
@@ -45,7 +48,8 @@ protected:
     QSize sizeHint() const;
 
 public:
-    explicit CompetitionView(QWidget *parent = nullptr, AccountManager *am = nullptr);
+	explicit CompetitionView(QWidget *parent = nullptr, AccountManager *am = nullptr,
+							 Competition *com = nullptr);
     void setData(const QList<CompetitionInfo> &in);
 
 private slots:

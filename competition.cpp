@@ -7,7 +7,7 @@ Competition::Competition(QWidget *parent, AccountManager *am) :
     QWidget(parent)
 {
     this->am = am;
-    cv = new CompetitionView(this, am);
+	cv = new CompetitionView(this, am, this);
 
     text = new QLabel(tr("<h1>Competitions</h1>"));
 
@@ -32,6 +32,10 @@ Competition::Competition(QWidget *parent, AccountManager *am) :
     persec = new QLabel(tr("seconds"));
     setbut = new QPushButton(tr("Set"));
     refnow = new QPushButton(tr("Refresh Now!"));
+
+	notiCheck = new QCheckBox("System Notification");
+	notiCheck->setChecked(1);
+
     connect(refnow, SIGNAL(clicked()), this, SLOT(updateStatus()));
     connect(setbut, SIGNAL(clicked()), this, SLOT(changeTime()));
     stat = new QLabel(tr("Status: "));
@@ -42,6 +46,7 @@ Competition::Competition(QWidget *parent, AccountManager *am) :
     downBox->addWidget(persec);
     downBox->addWidget(setbut);
     downBox->addWidget(refnow);
+	downBox->addWidget(notiCheck);
     downBox->addStretch();
     downBox->addWidget(stat);
     downBox->addWidget(status);
@@ -113,19 +118,28 @@ void Competition::changeTime()
         timer->start(interval*1000);
 }
 
+bool Competition::hasNoti()
+{
+	return ( notiCheck->checkState() == Qt::Checked ) ;
+}
+
 QDataStream & operator<<(QDataStream &ds, const Competition &in)
 {
-    ds << in.refresh->text();
+	ds << in.refresh->text() << ( in.notiCheck->checkState() == Qt::Checked ) ;
 
     return ds;
 }
 
 QDataStream & operator>>(QDataStream &ds, Competition &in)
 {
-    QString tmp;
+	QString tmp;
     ds >> tmp;
     in.refresh->setText(tmp);
     in.changeTime();
+
+	bool ch;
+	ds >> ch;
+	in.notiCheck->setChecked(ch);
 
     return ds;
 }
