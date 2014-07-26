@@ -16,6 +16,12 @@ SGUClient::SGUClient(QWidget *parent) :
     stat = new QPushButton(tr("Status"));
     accs = new QPushButton(tr("Accounts"));
 
+	friendAct->setMinimumHeight( friendAct->sizeHint().height() * 1.3 );
+	competit->setMinimumHeight( competit->sizeHint().height() * 1.3 );
+	sugg->setMinimumHeight( sugg->sizeHint().height() * 1.3 );
+	stat->setMinimumHeight( stat->sizeHint().height() * 1.3 );
+	accs->setMinimumHeight( accs->sizeHint().height() * 1.3 );
+
     butts = new QVBoxLayout;
     butts->addWidget(friendAct);
     butts->addWidget(competit);
@@ -51,6 +57,7 @@ SGUClient::SGUClient(QWidget *parent) :
     connect(friendAct, SIGNAL(clicked()), this, SLOT(faPage()));
     connect(stat, SIGNAL(clicked()), this, SLOT(statPage()));
     connect(competit, SIGNAL(clicked()), this, SLOT(comPage()));
+	connect(sugg, SIGNAL(clicked()) , this, SLOT(sugPage()) );
 
     setCentralWidget(wid);
     setWindowTitle("SGU Client By Leo145");
@@ -64,7 +71,7 @@ SGUClient::~SGUClient()
     if (file.open(QIODevice::WriteOnly))
     {
         QDataStream ds(&file);
-        ds << *am << *fa << *so << *com;
+		ds << *am << *fa << *so << *com << *sug;
     }
     file.close();
 }
@@ -75,7 +82,7 @@ void SGUClient::loadCache()
     if (file.open(QIODevice::ReadOnly))
     {
         QDataStream ds(&file);
-        ds >> *am >> *fa >> *so >> *com;
+		ds >> *am >> *fa >> *so >> *com >> *sug;
     }
     file.close();
 }

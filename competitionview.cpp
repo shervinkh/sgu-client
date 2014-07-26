@@ -28,11 +28,11 @@ CompetitionView::CompetitionView(QWidget *parent, AccountManager *am,
 void CompetitionView::setData(const QList<CompetitionInfo> &in)
 {
     setRowCount(0);
-    setRowCount(in.size());
+	setRowCount(in.size());
 
     foreach (CompetitionInfo ci, in)
     {
-		if (!ids.contains(ci) && com->hasNoti() == Qt::Checked )
+		if (!ids.contains(ci) && com->hasNoti() )
         {
             QString name = am->infoOf(ci.target()).name();
 
@@ -93,7 +93,7 @@ void CompetitionView::setData(const QList<CompetitionInfo> &in)
         setItem(i, 2, compt);
     }
 
-	if (hascrit && com->hasNoti() == Qt::Checked )
+	if (hascrit && com->hasNoti() )
         QProcess::execute("notify-send", QStringList() << "--icon=error" << "--app-name='SGU Client'" << "SGU Client" << "You have some critical warnings!");
 
     resizeColumnsToContents();
