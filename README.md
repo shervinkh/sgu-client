@@ -5,6 +5,6 @@ A simple competition program that i had written for fun. but some people wanted 
 
 Developed In ~2013 Fall By Shervin Kh.
 
-Compile with qt4 in following way:
+Compile with qt4 in the following way:
 
 qmake && make
