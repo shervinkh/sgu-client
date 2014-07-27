@@ -3,7 +3,7 @@ sgu-client
 
 A simple competition program that i had written for fun. but some people wanted it here :)
 
-Developed In ~2013 Fall By Shervin Kh & Edited By Ali Bahjati In ~2014
+Developed In ~2013 Fall By Shervin Kh & Edited By Ali Bahjati In ~2014 Summer
 
 Installation
 ============
